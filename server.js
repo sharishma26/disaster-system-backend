@@ -765,16 +765,18 @@ app.post("/register", async (req, res) => {
 });
 
     await user.save();
-    await transporter.sendMail({
 
-  from: process.env.EMAIL_USER,
+    console.log("User Registered Successfully");
+    //await transporter.sendMail({
 
-  to: email,
+  //from: process.env.EMAIL_USER,
 
-  subject: "OTP Verification",
+  //to: email,
 
-  text: `Your OTP is ${otp}`
-});
+  //subject: "OTP Verification",
+
+  //text: `Your OTP is ${otp}`
+//});
 
     res.json({
 
