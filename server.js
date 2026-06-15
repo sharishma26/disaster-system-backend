@@ -770,6 +770,8 @@ app.post("/register", async (req, res) => {
 
     });
 
+    console.log("Email Sent:", info.response);
+
     res.json({
 
       success: true,
