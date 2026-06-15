@@ -687,6 +687,10 @@ app.get("/send-test-email", async (req, res) => {
 
   try {
 
+    console.log("EMAIL_USER:", process.env.EMAIL_USER);
+
+   console.log("EMAIL_PASS EXISTS:", !!process.env.EMAIL_PASS);
+
     await transporter.sendMail({
 
       from: process.env.EMAIL_USER,
