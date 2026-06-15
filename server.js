@@ -126,14 +126,20 @@ mongoose.connect(uri)
 
 const transporter = nodemailer.createTransport({
 
-  service: "gmail",
+  host: "smtp.gmail.com",
+
+  port: 587,
+
+  secure: false,
 
   auth: {
 
     user: process.env.EMAIL_USER,
 
     pass: process.env.EMAIL_PASS
+
   }
+
 });
 const userSchema = new mongoose.Schema({
 
@@ -767,16 +773,16 @@ app.post("/register", async (req, res) => {
     await user.save();
 
     console.log("User Registered Successfully");
-    //await transporter.sendMail({
+    await transporter.sendMail({
 
-  //from: process.env.EMAIL_USER,
+  from: process.env.EMAIL_USER,
 
-  //to: email,
+  to: email,
 
-  //subject: "OTP Verification",
+  subject: "OTP Verification",
 
-  //text: `Your OTP is ${otp}`
-//});
+  text: `Your OTP is ${otp}`
+});
 
     res.json({
 
