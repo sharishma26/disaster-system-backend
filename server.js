@@ -775,17 +775,17 @@ app.post("/register", async (req, res) => {
 
     console.log("Sending OTP to:", email);
 
-    const info = await transporter.sendMail({
+    //const info = await transporter.sendMail({
 
-      from: process.env.EMAIL_USER,
+     // from: process.env.EMAIL_USER,
 
-      to: email,
+      //to: email,
 
-      subject: "OTP Verification",
+      //subject: "OTP Verification",
 
-      text: `Your OTP is ${otp}`
+      //text: `Your OTP is ${otp}`
 
-    });
+    //});
 
     console.log("Email Sent:", info.response);
 
