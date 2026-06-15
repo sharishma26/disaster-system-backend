@@ -795,8 +795,9 @@ app.post("/register", async (req, res) => {
 
       success: true,
 
-      message: "✅ Registration Successful"
-
+      message: "✅ Registration Successful",
+      
+      otp: otp
     });
 
   }
