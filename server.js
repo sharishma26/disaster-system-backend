@@ -707,7 +707,7 @@ app.get("/send-test-email", async (req, res) => {
     console.log("EMAIL_USER:", process.env.EMAIL_USER);
     console.log("EMAIL_PASS EXISTS:", !!process.env.EMAIL_PASS);
 
-    await transporter.sendMail({
+    const info = await transporter.sendMail({
 
       from: process.env.EMAIL_USER,
 
@@ -718,6 +718,8 @@ app.get("/send-test-email", async (req, res) => {
       text: "Nodemailer is working successfully"
 
     });
+
+    console.log(info.response);
 
     res.send("✅ Test Email Sent");
 
