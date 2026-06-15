@@ -688,8 +688,7 @@ app.get("/send-test-email", async (req, res) => {
   try {
 
     console.log("EMAIL_USER:", process.env.EMAIL_USER);
-
-   console.log("EMAIL_PASS EXISTS:", !!process.env.EMAIL_PASS);
+    console.log("EMAIL_PASS EXISTS:", !!process.env.EMAIL_PASS);
 
     await transporter.sendMail({
 
@@ -700,6 +699,7 @@ app.get("/send-test-email", async (req, res) => {
       subject: "✅ Test Email",
 
       text: "Nodemailer is working successfully"
+
     });
 
     res.send("✅ Test Email Sent");
@@ -708,97 +708,94 @@ app.get("/send-test-email", async (req, res) => {
 
   catch(error){
 
-    console.log(error);
+    console.log("EMAIL ERROR:", error);
 
-    res.send("❌ Email Failed");
+    res.send(error.message);
+
   }
+
 });
+
 app.post("/register", async (req, res) => {
 
   try {
 
-    const {
+    const { username, email, password } = req.body;
 
-      username,
+    const existingUser = await User.findOne({ email });
 
-      email,
-
-      password
-
-    } = req.body;
-
-    const existingUser = await User.findOne({
-
-      email
-    });
-
-    if(existingUser){
+    if (existingUser) {
 
       return res.json({
-
         success: false,
-
         message: "User already exists"
       });
+
     }
 
     const hashedPassword =
-
       await bcrypt.hash(password, 10);
-      const otp = Math.floor(
 
-  100000 + Math.random() * 900000
-
-).toString();
+    const otp = Math.floor(
+      100000 + Math.random() * 900000
+    ).toString();
 
     const user = new User({
 
-  username,
+      username,
+      email,
+      password: hashedPassword,
+      otp,
+      verified: false
 
-  email,
-
-  password: hashedPassword,
-
-  otp,
-
-  verified: false
-});
+    });
 
     await user.save();
 
     console.log("User Registered Successfully");
-    await transporter.sendMail({
 
-  from: process.env.EMAIL_USER,
+    console.log("Generated OTP:", otp);
 
-  to: email,
+    console.log("Sending OTP to:", email);
 
-  subject: "OTP Verification",
+    const info = await transporter.sendMail({
 
-  text: `Your OTP is ${otp}`
-});
+      from: process.env.EMAIL_USER,
+
+      to: email,
+
+      subject: "OTP Verification",
+
+      text: `Your OTP is ${otp}`
+
+    });
 
     res.json({
 
       success: true,
 
       message: "✅ Registration Successful"
+
     });
 
   }
 
-  catch(error){
+  catch (error) {
 
-  console.log("REGISTER ERROR:", error);
+    console.log("REGISTER ERROR:", error);
 
-  res.status(500).json({
+    res.status(500).json({
 
-    success:false,
+      success: false,
 
-    error:error.message
-  });
-}
+      error: error.message
+
+    });
+
+  }
+
 });
+
 /* =========================
    LOGIN API
 ========================= */
