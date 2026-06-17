@@ -970,63 +970,39 @@ app.post("/login", async (req, res) => {
   }
 });
 
-app.post(
+app.post("/forgot-password", async (req, res) => {
 
-  "/forgot-password",
+  try {
 
-  async (req, res) => {
+    const { email } = req.body;
 
-    try {
+    const user = await User.findOne({
+      email
+    });
 
-      const { email } = req.body;
+    if (!user) {
 
-      const user = await User.findOne({
-
-        email
-      });
-
-      if(!user){
-
-        return res.json({
-
-          success:false,
-
-          message:"User Not Found"
-        });
-      }
-
-      await transporter.sendMail({
-
-        from: process.env.EMAIL_USER,
-
-        to: email,
-
-        subject:
-          "Password Reset",
-
-        text:
-          "Your password reset request was received."
-      });
-
-      res.json({
-
-        success:true,
-
-        message:
-          "✅ Reset Email Sent"
-      });
-
-    }
-
-    catch(error){
-
-      res.status(500).json({
-
-        success:false,
-
-        error:error.message
+      return res.json({
+        success: false,
+        message: "User Not Found"
       });
     }
+
+    res.json({
+      success: true,
+      message: "✅ Reset Request Accepted"
+    });
+
+  }
+
+  catch(error){
+
+    res.status(500).json({
+      success: false,
+      error: error.message
+    });
+  }
+
 });
 app.post("/reset-password", async (req,res)=>{
 
