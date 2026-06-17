@@ -54,7 +54,9 @@ app.use(express.urlencoded({
 
 app.use(
   "/uploads",
-  express.static("uploads")
+  express.static(
+    path.join(__dirname, "uploads")
+  )
 );
 const fs = require("fs");
 
