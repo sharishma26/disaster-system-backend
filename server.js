@@ -1180,34 +1180,43 @@ app.get("/teams", async (req, res) => {
 });
 
 app.put(
-
   "/assign-team/:id",
-
   async (req, res) => {
 
-    try{
+    try {
 
-      await RescueTeam.findByIdAndUpdate(
+      const team =
+        await RescueTeam.findOneAndUpdate(
 
-        req.params.id,
+          { teamId: req.params.id },
 
-        {
+          { status: "Assigned" },
 
-          status: "Assigned"
+          { new: true }
 
-        }
+        );
 
-      );
+      if (!team) {
+
+        return res.status(404).json({
+
+          message: "Team Not Found"
+
+        });
+
+      }
 
       res.json({
 
-        message: "🚑 Team Assigned"
+        message: "🚑 Team Assigned",
+
+        team
 
       });
 
     }
 
-    catch(error){
+    catch (error) {
 
       res.status(500).json({
 
@@ -1217,7 +1226,8 @@ app.put(
 
     }
 
-});
+  }
+);
 app.post("/sos", async (req, res) => {
 
   try{
