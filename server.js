@@ -177,6 +177,8 @@ const User = mongoose.model(
 
 const rescueTeamSchema = new mongoose.Schema({
 
+  teamId: String,
+
   teamName: String,
 
   members: Number,
@@ -1350,64 +1352,63 @@ app.get("/add-all-teams", async (req, res) => {
 
   const teams = [
 
-{ teamName:"Andhra Pradesh Rescue Team", members:12, vehicle:"Ambulance", status:"Available", latitude:15.9129, longitude:79.7400 },
+{ teamId:"RT001", teamName:"Andhra Pradesh Rescue Team", members:12, vehicle:"Ambulance", status:"Available", latitude:15.9129, longitude:79.7400 },
 
-{ teamName:"Arunachal Pradesh Rescue Team", members:10, vehicle:"Rescue Van", status:"Available", latitude:28.2180, longitude:94.7278 },
+{ teamId:"RT002", teamName:"Arunachal Pradesh Rescue Team", members:10, vehicle:"Rescue Van", status:"Available", latitude:28.2180, longitude:94.7278 },
 
-{ teamName:"Assam Rescue Team", members:12, vehicle:"Ambulance", status:"Available", latitude:26.2006, longitude:92.9376 },
+{ teamId:"RT003", teamName:"Assam Rescue Team", members:12, vehicle:"Ambulance", status:"Available", latitude:26.2006, longitude:92.9376 },
 
-{ teamName:"Bihar Rescue Team", members:12, vehicle:"Ambulance", status:"Available", latitude:25.0961, longitude:85.3131 },
+{ teamId:"RT004", teamName:"Bihar Rescue Team", members:12, vehicle:"Ambulance", status:"Available", latitude:25.0961, longitude:85.3131 },
 
-{ teamName:"Chhattisgarh Rescue Team", members:10, vehicle:"Fire Truck", status:"Available", latitude:21.2787, longitude:81.8661 },
+{ teamId:"RT005", teamName:"Chhattisgarh Rescue Team", members:10, vehicle:"Fire Truck", status:"Available", latitude:21.2787, longitude:81.8661 },
 
-{ teamName:"Goa Rescue Team", members:8, vehicle:"Rescue Van", status:"Available", latitude:15.2993, longitude:74.1240 },
+{ teamId:"RT006", teamName:"Goa Rescue Team", members:8, vehicle:"Rescue Van", status:"Available", latitude:15.2993, longitude:74.1240 },
 
-{ teamName:"Gujarat Rescue Team", members:14, vehicle:"Ambulance", status:"Available", latitude:22.2587, longitude:71.1924 },
+{ teamId:"RT007", teamName:"Gujarat Rescue Team", members:14, vehicle:"Ambulance", status:"Available", latitude:22.2587, longitude:71.1924 },
 
-{ teamName:"Haryana Rescue Team", members:10, vehicle:"Rescue Van", status:"Available", latitude:29.0588, longitude:76.0856 },
+{ teamId:"RT008", teamName:"Haryana Rescue Team", members:10, vehicle:"Rescue Van", status:"Available", latitude:29.0588, longitude:76.0856 },
 
-{ teamName:"Himachal Pradesh Rescue Team", members:10, vehicle:"Mountain Rescue", status:"Available", latitude:31.1048, longitude:77.1734 },
+{ teamId:"RT009", teamName:"Himachal Pradesh Rescue Team", members:10, vehicle:"Mountain Rescue", status:"Available", latitude:31.1048, longitude:77.1734 },
 
-{ teamName:"Jharkhand Rescue Team", members:10, vehicle:"Ambulance", status:"Available", latitude:23.6102, longitude:85.2799 },
+{ teamId:"RT010", teamName:"Jharkhand Rescue Team", members:10, vehicle:"Ambulance", status:"Available", latitude:23.6102, longitude:85.2799 },
 
-{ teamName:"Karnataka Rescue Team", members:14, vehicle:"Fire Truck", status:"Available", latitude:15.3173, longitude:75.7139 },
+{ teamId:"RT011", teamName:"Karnataka Rescue Team", members:14, vehicle:"Fire Truck", status:"Available", latitude:15.3173, longitude:75.7139 },
 
-{ teamName:"Kerala Rescue Team", members:12, vehicle:"Ambulance", status:"Available", latitude:10.8505, longitude:76.2711 },
+{ teamId:"RT012", teamName:"Kerala Rescue Team", members:12, vehicle:"Ambulance", status:"Available", latitude:10.8505, longitude:76.2711 },
 
-{ teamName:"Madhya Pradesh Rescue Team", members:12, vehicle:"Rescue Van", status:"Available", latitude:22.9734, longitude:78.6569 },
+{ teamId:"RT013", teamName:"Madhya Pradesh Rescue Team", members:12, vehicle:"Rescue Van", status:"Available", latitude:22.9734, longitude:78.6569 },
 
-{ teamName:"Maharashtra Rescue Team", members:15, vehicle:"Ambulance", status:"Available", latitude:19.7515, longitude:75.7139 },
+{ teamId:"RT014", teamName:"Maharashtra Rescue Team", members:15, vehicle:"Ambulance", status:"Available", latitude:19.7515, longitude:75.7139 },
 
-{ teamName:"Manipur Rescue Team", members:10, vehicle:"Rescue Van", status:"Available", latitude:24.6637, longitude:93.9063 },
+{ teamId:"RT015", teamName:"Manipur Rescue Team", members:10, vehicle:"Rescue Van", status:"Available", latitude:24.6637, longitude:93.9063 },
 
-{ teamName:"Meghalaya Rescue Team", members:10, vehicle:"Rescue Van", status:"Available", latitude:25.4670, longitude:91.3662 },
+{ teamId:"RT016", teamName:"Meghalaya Rescue Team", members:10, vehicle:"Rescue Van", status:"Available", latitude:25.4670, longitude:91.3662 },
 
-{ teamName:"Mizoram Rescue Team", members:10, vehicle:"Ambulance", status:"Available", latitude:23.1645, longitude:92.9376 },
+{ teamId:"RT017", teamName:"Mizoram Rescue Team", members:10, vehicle:"Ambulance", status:"Available", latitude:23.1645, longitude:92.9376 },
 
-{ teamName:"Nagaland Rescue Team", members:10, vehicle:"Rescue Van", status:"Available", latitude:26.1584, longitude:94.5624 },
+{ teamId:"RT018", teamName:"Nagaland Rescue Team", members:10, vehicle:"Rescue Van", status:"Available", latitude:26.1584, longitude:94.5624 },
 
-{ teamName:"Odisha Rescue Team", members:12, vehicle:"Cyclone Vehicle", status:"Available", latitude:20.9517, longitude:85.0985 },
+{ teamId:"RT019", teamName:"Odisha Rescue Team", members:12, vehicle:"Cyclone Vehicle", status:"Available", latitude:20.9517, longitude:85.0985 },
 
-{ teamName:"Punjab Rescue Team", members:10, vehicle:"Fire Truck", status:"Available", latitude:31.1471, longitude:75.3412 },
+{ teamId:"RT020", teamName:"Punjab Rescue Team", members:10, vehicle:"Fire Truck", status:"Available", latitude:31.1471, longitude:75.3412 },
 
-{ teamName:"Rajasthan Rescue Team", members:12, vehicle:"Rescue Van", status:"Available", latitude:27.0238, longitude:74.2179 },
+{ teamId:"RT021", teamName:"Rajasthan Rescue Team", members:12, vehicle:"Rescue Van", status:"Available", latitude:27.0238, longitude:74.2179 },
 
-{ teamName:"Sikkim Rescue Team", members:8, vehicle:"Mountain Rescue", status:"Available", latitude:27.5330, longitude:88.5122 },
+{ teamId:"RT022", teamName:"Sikkim Rescue Team", members:8, vehicle:"Mountain Rescue", status:"Available", latitude:27.5330, longitude:88.5122 },
 
-{ teamName:"Tamil Nadu Rescue Team", members:14, vehicle:"Ambulance", status:"Available", latitude:11.1271, longitude:78.6569 },
+{ teamId:"RT023", teamName:"Tamil Nadu Rescue Team", members:14, vehicle:"Ambulance", status:"Available", latitude:11.1271, longitude:78.6569 },
 
-{ teamName:"Telangana Rescue Team", members:12, vehicle:"Rescue Van", status:"Available", latitude:18.1124, longitude:79.0193 },
+{ teamId:"RT024", teamName:"Telangana Rescue Team", members:12, vehicle:"Rescue Van", status:"Available", latitude:18.1124, longitude:79.0193 },
 
-{ teamName:"Tripura Rescue Team", members:8, vehicle:"Rescue Van", status:"Available", latitude:23.9408, longitude:91.9882 },
+{ teamId:"RT025", teamName:"Tripura Rescue Team", members:8, vehicle:"Rescue Van", status:"Available", latitude:23.9408, longitude:91.9882 },
 
-{ teamName:"Uttar Pradesh Rescue Team", members:15, vehicle:"Ambulance", status:"Available", latitude:26.8467, longitude:80.9462 },
+{ teamId:"RT026", teamName:"Uttar Pradesh Rescue Team", members:15, vehicle:"Ambulance", status:"Available", latitude:26.8467, longitude:80.9462 },
 
-{ teamName:"Uttarakhand Rescue Team", members:10, vehicle:"Mountain Rescue", status:"Available", latitude:30.0668, longitude:79.0193 },
+{ teamId:"RT027", teamName:"Uttarakhand Rescue Team", members:10, vehicle:"Mountain Rescue", status:"Available", latitude:30.0668, longitude:79.0193 },
 
-{ teamName:"West Bengal Rescue Team", members:12, vehicle:"Cyclone Vehicle", status:"Available", latitude:22.9868, longitude:87.8550 }
+{ teamId:"RT028", teamName:"West Bengal Rescue Team", members:12, vehicle:"Cyclone Vehicle", status:"Available", latitude:22.9868, longitude:87.8550 }
 
 ];
-
     await RescueTeam.insertMany(teams);
 
     res.send("✅ All State Rescue Teams Added Successfully");
