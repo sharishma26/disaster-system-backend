@@ -20,6 +20,25 @@ const server = http.createServer(app);
 
 const { Server } = require("socket.io");
 
+const { CloudinaryStorage } =
+require("multer-storage-cloudinary");
+
+const cloudinary =
+require("cloudinary").v2;
+
+cloudinary.config({
+
+  cloud_name:
+  "degceht7n",
+
+  api_key:
+  "244811171912439",
+
+  api_secret:
+  "-39l3wA2JDcxDDptqOvpTNx3Pxc"
+
+});
+
 //const io = new Server(server, {
   //cors: {
     //origin: "*"
@@ -73,30 +92,24 @@ if(!fs.existsSync("uploads")){
    MULTER STORAGE
 ========================= */
 
-const storage = multer.diskStorage({
+const storage =
+new CloudinaryStorage({
 
-  destination: function(req, file, cb){
+  cloudinary,
 
-    cb(null, "uploads/");
-  },
+  params: {
 
-  filename: function(req, file, cb){
+    folder:
+    "disaster-reports",
 
-    cb(
+    allowed_formats:
+    ["jpg","jpeg","png"]
 
-      null,
-
-      Date.now() +
-
-      path.extname(file.originalname)
-    );
   }
+
 });
 
-const upload = multer({
-
-  storage: storage
-});
+const upload = multer({ storage });
 
 /* =========================
    MONGODB CONNECTION
@@ -366,7 +379,7 @@ app.post(
 
           image:
             req.file
-              ? req.file.filename
+              ? req.file.path
               : "default.png",
 
           status: "Pending"
