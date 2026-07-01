@@ -284,6 +284,8 @@ const incidentSchema =
 
     location: String,
 
+    phone:String,
+
     description: String,
 
     latitude: Number,
@@ -367,6 +369,8 @@ app.post(
 
           location:
             req.body.location,
+
+            phone: req.body.phone,
 
           description:
             req.body.description,
